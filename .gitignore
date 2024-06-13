@@ -8,7 +8,4 @@
 .externalNativeBuild
 .cxx
 local.properties
-/gradle
 /.kotlin
-gradlew
-gradlew.bat
