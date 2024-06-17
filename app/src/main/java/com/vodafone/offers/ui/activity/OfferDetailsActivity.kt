@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.google.android.material.snackbar.Snackbar
 import com.vodafone.offers.R
 import com.vodafone.offers.databinding.ActivityOfferDetailsBinding
 import com.vodafone.offers.viewmodels.OfferDetailsViewModel
@@ -48,6 +49,11 @@ class OfferDetailsActivity: AppCompatActivity() {
         }
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.loadError.observe(this@OfferDetailsActivity) { throwable->
+                    if(throwable != null) {
+                        Snackbar.make(rootBinding.root, "Nem sikerült letölteni az adatokat", Snackbar.LENGTH_LONG).show()
+                    }
+                }
                 viewModel.offerDetails.observe(this@OfferDetailsActivity) { offerDetails ->
                     rootBinding.offerDetails = offerDetails
                 }

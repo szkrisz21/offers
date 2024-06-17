@@ -17,17 +17,27 @@ class OfferDetailsViewModel : ViewModel() {
 
     val offerDetails = MutableLiveData<OfferDetails>(null)
 
+    val loadError = MutableLiveData<Throwable?>(null)
 
     fun load() {
         viewModelScope.launch(Dispatchers.IO) {
             isLoading.postValue(true)
             OffersAPI.Builder().offerDetailsAPI.getOfferDetails().enqueue(object : Callback<OfferDetails> {
-                override fun onResponse(p0: Call<OfferDetails>, p1: Response<OfferDetails>) {
-                    this@OfferDetailsViewModel.offerDetails.postValue(p1.body())
+                override fun onResponse(call: Call<OfferDetails>, response: Response<OfferDetails>) {
+                    if(response.isSuccessful) {
+                        try {
+                            this@OfferDetailsViewModel.offerDetails.postValue(response.body())
+                        }  catch (throwable: Throwable) {
+                            loadError.postValue(throwable)
+                        }
+                    } else {
+                        loadError.postValue(Exception("Response error: ${response.code()}"))
+                    }
                     isLoading.postValue(false)
                 }
 
-                override fun onFailure(p0: Call<OfferDetails>, p1: Throwable) {
+                override fun onFailure(call: Call<OfferDetails>, throwable: Throwable) {
+                   loadError.postValue(throwable)
                     isLoading.postValue(false)
                 }
             })

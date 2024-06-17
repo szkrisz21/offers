@@ -13,7 +13,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.snackbar.Snackbar
 import com.vodafone.offers.ui.adapter.OfferListAdapter
-import com.vodafone.offers.ui.adapter.OfferListAdapterItem
 import com.vodafone.offers.ui.adapter.OnOfferItemClickListener
 import com.vodafone.offers.data.Offer
 import com.vodafone.offers.databinding.ActivityMainBinding
@@ -45,7 +44,7 @@ class MainActivity : AppCompatActivity(), OnOfferItemClickListener {
         loadData()
     }
 
-    fun loadData(forced: Boolean = false) {
+    private fun loadData(forced: Boolean = false) {
         val viewModel: OfferListViewModel by viewModels()
         if(forced || viewModel.offers.value?.isEmpty() != false) {
             (rootBinding.offersList.adapter as? OfferListAdapter)?.clear()
@@ -53,6 +52,11 @@ class MainActivity : AppCompatActivity(), OnOfferItemClickListener {
         }
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.loadError.observe(this@MainActivity) { throwable->
+                    if(throwable != null) {
+                        Snackbar.make(rootBinding.root, "Nem sikerült letölteni az adatokat", Snackbar.LENGTH_LONG).show()
+                    }
+                }
                 viewModel.isLoading.observe(this@MainActivity) { isLoading->
                     rootBinding.swipeRefresh.isRefreshing = isLoading
                 }
