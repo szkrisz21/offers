@@ -30,7 +30,7 @@
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#F5F5F5">
+                android:background="@color/background_page">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -48,7 +48,7 @@
                         android:fontFamily="@font/inter_700"
                         android:lineSpacingMultiplier="1.21"
                         android:text="@{offerDetails.name}"
-                        android:textColor="#000000"
+                        android:textColor="@color/text_title"
                         android:textSize="24sp"
                         tools:text="Offer name" />
 
@@ -62,7 +62,7 @@
                         android:fontFamily="@font/inter_500"
                         android:lineSpacingMultiplier="1.21"
                         android:text="@{offerDetails.shortDescription}"
-                        android:textColor="#000000"
+                        android:textColor="@color/text_subtitle"
                         android:textSize="16sp"
                         tools:text="Offer \n short \n description" />
 
@@ -76,7 +76,7 @@
                         android:fontFamily="@font/inter_400"
                         android:lineSpacingMultiplier="1.375"
                         android:text="@{offerDetails.description}"
-                        android:textColor="#000000"
+                        android:textColor="@color/text_body"
                         android:textSize="16sp"
                         tools:text="Offer \n description" />
                 </LinearLayout>

@@ -2,7 +2,7 @@
 <resources>
 
     <style name="Toolbar" parent="Base.Toolbar">
-        <item name="android:outlineSpotShadowColor">#333333</item>
-        <item name="android:outlineAmbientShadowColor">#333333</item>
+        <item name="android:outlineSpotShadowColor">@color/background_toolbar</item>
+        <item name="android:outlineAmbientShadowColor">@color/background_toolbar</item>
     </style>
 </resources>

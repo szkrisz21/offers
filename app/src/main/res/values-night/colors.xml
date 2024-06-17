@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background_page">#FF2A2A2A</color>
+    <color name="text_headline">#FFCCCCCC</color>
+    <color name="text_body">#FFFFFFFF</color>
+    <color name="text_app_bar_title">#FFFFFFFF</color>
+    <color name="text_title">#FFFFFFFF</color>
+    <color name="text_subtitle">#FFFFFFFF</color>
+    <color name="offer_tile_background">#FF1A1A1A</color>
+    <color name="background_toolbar">#FF1A1A1A</color>
+    <color name="toolbar_title">#FFCCCCCC</color>
+</resources>
