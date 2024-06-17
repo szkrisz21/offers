@@ -1,5 +1,3 @@
-import com.android.build.gradle.internal.dependency.AndroidXDependencySubstitution
-import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
 
 plugins {
     alias(libs.plugins.android.application)
@@ -50,8 +48,10 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.androidx.swiperefreshlayout)
     implementation(libs.androidx.activity.ktx)
-    implementation(libs.gson)
-    testImplementation(libs.junit)
+    implementation(libs.junit)
+    testImplementation(libs.json)
+    testImplementation(libs.mockito.core)
+    androidTestImplementation(libs.android)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
